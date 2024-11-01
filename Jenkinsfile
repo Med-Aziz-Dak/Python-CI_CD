@@ -1,19 +1,18 @@
 pipeline {
     agent { 
         node {
-            label 'docker-agent-python'
-            }
-      }
+            label 'docker-agent-python' // Ensure this matches your Jenkins node label
+        }
+    }
     triggers {
-        pollSCM '* * * * *'
+        pollSCM '* * * * *' // Poll the SCM every minute
     }
     stages {
         stage('Build') {
             steps {
                 echo "Building.."
                 sh '''
-                cd myapp
-                pip install -r requirements.txt
+                pip install -r requirements.txt // Install dependencies
                 '''
             }
         }
@@ -21,17 +20,16 @@ pipeline {
             steps {
                 echo "Testing.."
                 sh '''
-                cd myapp
-                python3 hello.py
-                python3 hello.py --name=Brad
+                python3 HelloWorld.py // Run your main script
+                python3 HelloWorld.py --name=Brad // Test with argument
                 '''
             }
         }
         stage('Deliver') {
             steps {
-                echo 'Deliver....'
+                echo 'Delivering....'
                 sh '''
-                echo "doing delivery stuff.."
+                echo "Doing delivery stuff.."
                 '''
             }
         }
