@@ -1,3 +1,6 @@
+git clone https://github.com/Med-Aziz-Dak/Python-CI_CD.git
+
+
 Download and Run Alpine Socat Container
 docker run -d --name socat1 -p 2375:2375 alpine/socat socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
 
