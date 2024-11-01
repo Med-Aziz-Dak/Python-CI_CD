@@ -1,0 +1,26 @@
+Download and Run Alpine Socat Container
+docker run -d --name socat1 -p 2375:2375 alpine/socat socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+
+To run a second instance (the second container):
+docker run -d --name socat2 -p 2376:2376 alpine/socat socat tcp-listen:2376,fork,reuseaddr unix-connect:/var/run/docker.sock
+
+To download and run the Jenkins Blue Ocean container, use the following command:
+docker run -d --name jenkins-blueocean -p 8080:8080 -p 50000:50000 myjenkins-blueocean:2.414.2
+Make sure you replace myjenkins-blueocean:2.414.2 with the correct image name if you haven't built or pulled it yet. If you need to pull it from a registry (like Docker Hub), use
+docker pull jenkins/jenkins:latest
+
+To pull the latest Jenkins agent image, use:
+docker pull jenkins/agent:latest-alpine-jdk11
+
+
+# Run the first Socat container
+docker run -d --name socat1 -p 2375:2375 alpine/socat socat tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
+
+# Run the second Socat container
+docker run -d --name socat2 -p 2376:2376 alpine/socat socat tcp-listen:2376,fork,reuseaddr unix-connect:/var/run/docker.sock
+
+# Run Jenkins Blue Ocean
+docker run -d --name jenkins-blueocean -p 8080:8080 -p 50000:50000 myjenkins-blueocean:2.414.2
+
+# Pull the Jenkins agent image
+docker pull jenkins/agent:latest-alpine-jdk11
