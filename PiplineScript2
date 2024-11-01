@@ -1,0 +1,35 @@
+pipeline {
+    agent { 
+        node {
+            label 'docker-agent-python'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+                sh '''
+                echo "doing build stuff.."
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing.."
+                sh '''
+                # Run HelloWorld.py and any other tests you may have
+                python3 HelloWorld.py  # Make sure Python 3 is installed in your environment
+                python3 HelloWorld.py --name=Brad  # Example of running with an argument
+                '''
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
+            }
+        }
+    }
+}
