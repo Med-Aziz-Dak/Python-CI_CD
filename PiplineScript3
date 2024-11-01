@@ -1,0 +1,35 @@
+pipeline {
+    agent { 
+        node {
+            label 'docker-agent-python'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+                sh '''
+                echo "doing build stuff.."
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing.."
+                sh '''
+                echo "Running HelloWorld.py"
+                python3 HelloWorld.py
+                python3 HelloWorld.py --name=Brad
+                '''
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo 'Delivering....'
+                sh '''
+                echo "doing delivery stuff.."
+                '''
+            }
+        }
+    }
+}
